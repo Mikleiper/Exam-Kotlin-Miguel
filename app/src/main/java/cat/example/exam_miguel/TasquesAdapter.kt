@@ -1,14 +1,16 @@
 package cat.example.exam_miguel
 
 import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 
 class TasquesAdapter(
-    private val tasques : list<Tasca>(),
-    private val onItemClick: Tasca) -> Unit
-) : RecyclerView.Adapter<TascaViewHolder>() {
+    private val tasques : List<Tasca>,
+    private val onItemClick: (Tasca) -> Unit
+): RecyclerView.Adapter<TascaViewHolder>() {
 
     fun setTasques(novesTasques: List<Tasca>) {
-        tasques = novesTasques
+        tasques.add (novesTasques
         notifyDataSetChanged()
     }
 
@@ -21,5 +23,7 @@ class TasquesAdapter(
     override fun onBindViewHolder(holder: TascaViewHolder, position: Int) {
         holder.renderitza(tasques[position])
     }
+
+    override fun getItemCount(): Int = tasques.size
 
 }
